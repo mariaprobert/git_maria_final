@@ -1,0 +1,5 @@
+"0","nuevo_leon_ranking <- "
+"0","bind_rows(climate_rank, water_insecurity_rank, groundwater_rank, reforestation_rank) |> "
+"0","  filter(unidad_geografica_str == ""Nuevo León"")"
+"0",""
+"0","nuevo_leon_ranking"

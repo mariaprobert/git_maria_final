@@ -1,0 +1,8 @@
+"0","groundwater_volume <- all_the_data |>"
+"0","  filter(source == ""groundwater"") |>"
+"0","  group_by(unidad_geografica_str, ano) |>"
+"0","  select(unidad_geografica_str, valor, ano) |>"
+"0","  mutate(ano= str_c(""01-01-"", ano) |> mdy() )"
+"0",""
+"0",""
+"0","groundwater_volume"

@@ -1,0 +1,191 @@
+---
+title: "Cleaning"
+---
+
+## Setting up the project 
+
+Here I am loading the special libraries I need in order to clean my data. For this specific project I will need rvest and httr2 in order to pull out data that is not readily available for me to download.
+
+```{r}
+library(tidyverse)
+library(janitor)
+library(rvest)
+library(httr2)
+```
+
+## Getting the html 
+
+Because I can't directly load the data into my computer, here I will get the html that I want to scrape the data from.
+
+```{r}
+# url <- "https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos?page"
+url <- "https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos?page=2"
+
+html <- read_html(url)
+```
+
+I am asking the function to specifically scrape for information in a table format. To be able to identify what I need, I used the inspector function in my computer browser. To start I want to look at the index of climate change awareness of each state, or how responsible state entities are of their natural resources. This includes water efficiency, deforestation protection and much more. States are graded on a scale from 0 to 100, where the higher the score the better the better the performance.
+
+```{r}
+tables <- html |> html_table()
+
+tables[[1]]
+
+tables |> _[[1]]
+```
+
+This is now a list of tibbles not a tibble. 
+
+## Spanish terminology
+
+The first variable "UNIDAD GEOGRÁFICA STR" refers to the geographical region of each entity in the variable list, in this case the data is evaluated at the state level. 
+
+"VALOR" stands for value. 
+
+"AÑO"stands for year, which is also shown as "ano". 
+
+"CVE UNIDAD GRÁFICA" represents different numbers assigned to each state. For example, the state of Nuevo León is number 19. We will largely ignore these variables in this analysis. 
+
+## Function to parse page 
+
+Here we parse the page by using a function. This is also cleaning the names and making sure that they are easier for me to work with.
+
+```{r}
+parse_page <- function(our_url) {
+  our_url |> 
+    read_html() |> 
+    html_table() |> _[[1]] |> 
+    clean_names() |> 
+    mutate(valor = valor |> as.character() |> parse_number())
+}
+
+# We test this by feeding it the url variable we also used above here is the function
+parse_page(url)
+```
+
+In the function we also added the parse.number() in the function to ensure that it reads every valor variable as a number and not a character. 
+
+## Get and combine the pages 
+
+This is where I get the data. The data is not just from the main page table, but all tables in the same url.
+
+```{r}
+# This range has to be valid. See how many pages are in the table
+i <- 1:39
+
+# This creates a list of urls based on that range
+urls <- str_glue("https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos?page={i}")
+
+# This takes that list of urls and then runs our parse_page() function on each one.
+# The result is a list tibbles, i.e., a table from each page
+requests <- map(urls, parse_page)
+
+# list_rbind is a special function that binds a list of tibbles into a single one
+climate_data <- requests |> list_rbind() 
+
+# here we just peek at the table
+climate <- climate_data |> mutate(source= "climate")
+
+climate
+```
+
+We take all the pages that we want. In this example we have all 39 pages of data scraped. I also attributed these specific variables to the name "climate" to be able to identify what we are looking at. 
+
+## Adding more data from other variables
+
+Now I want to add other variables so that later I can form a more complete analysis. I added to my data the percentage of water insecurity by each Mexican state. I named this variable water_insecurity. 
+
+Here is the same process with the url for water_insecurity:
+
+```{r}
+# This range has to be valid. See how many pages are in the table
+i <- 1:7
+
+# This creates a list of urls based on that range
+urls <- str_glue("https://planestrategico.conl.mx/indicadores/detalle/ods/934/datos?page={i}")
+
+# This takes that list of urls and then runs our parse_page() function on each one.
+# The result is a list tibbles, i.e., a table from each page
+requests <- map(urls, parse_page)
+
+# list_rbind is a special function that binds a list of tibbles into a single one
+water_insecurity_data <- requests |> list_rbind()
+
+# here we just peek at the table
+water_insecurity <- water_insecurity_data |> 
+  mutate(source = "water_insecurity")
+
+water_insecurity
+```
+
+Notice how the only element that changes in the url is the attached number in the source variable.
+
+Now I want to add the data for average annual availability of groundwater. This variable is in units of millions of cubic meters per year. This also takes into account the amount of water that can be used in many ways without harming the environment with its extraction. I called this variable groundwater for simplicity. 
+
+Here is the data pulled for groundwater: 
+
+```{r}
+i <- 1:7
+
+urls <- str_glue("https://planestrategico.conl.mx/indicadores/detalle/ods/122/datos?page={i}")
+
+requests <- map(urls, parse_page)
+
+groundwater_data <- requests |> list_rbind()
+
+groundwater <- groundwater_data |> 
+  mutate(source = "groundwater")
+
+groundwater
+
+
+```
+
+Now I will add data that looks at the number of hectares reforested by year in each state. This looks specifically at reforestation efforts. I called this variable reforestation. 
+
+Here is the data pulled for reforestation: 
+
+```{r}
+i <- 1:53
+
+urls <- str_glue("https://planestrategico.conl.mx/indicadores/detalle/ods/135/datos?page={i}")
+
+requests <- map(urls, parse_page)
+
+reforestation_data <- requests |> list_rbind()
+
+reforestation <- reforestation_data |> 
+  mutate(source = "reforestation")
+
+reforestation
+```
+
+
+
+
+## Combine the data 
+
+In order to export and analyze my data I combined all of the variables together. Since they all have the same table format, it was easy to make each one match up. 
+
+```{r}
+all_the_data <- bind_rows(climate, 
+ water_insecurity, groundwater, reforestation)
+
+all_the_data
+```
+
+Now I have all the data filter source in place, and with the source name I can differentiate and tell what each number means. 
+
+## Exporing the data 
+
+I will export my cleaned data to a folder. 
+
+```{r}
+all_the_data |> write_rds("data-processed/01-finaldata.rds")
+```
+
+
+
+
+
+

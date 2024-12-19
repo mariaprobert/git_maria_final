@@ -1,0 +1,21 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "mariaprobert-final"
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - 01-cleaning.qmd
+      - 02-analysis.qmd
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+
+
+

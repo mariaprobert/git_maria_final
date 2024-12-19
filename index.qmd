@@ -1,0 +1,87 @@
+---
+title: "mariaprobert-final"
+---
+
+
+::: {.panel-tabset} 
+
+
+## English 
+
+When it comes to good use of natural resources and reforestation efforts, the Mexican state of Nuevo León is among the best performing states in Mexico. However, almost half of the state population suffers from water insecurity as of 2022, and during the pandemic the deficit of groundwater grew substantially from years past. 
+
+These findings stem from a data analysis using data from Consejo Nuevo León, that analyzes Mexican state entities based on different variables. Consejo Nuevo León uses the data that they collect to then evaluate and formulate guidelines for the Mexican government to further help and improve social issues. Consejo Nuevo León information can be accessed here: https://conl.mx/quienes_somos.
+
+This project aims to compare and analyze different Mexican states and how well they do in four categories: climate change index, water insecurity, groundwater and reforestation. 
+
+More information and details about each variable can be found in the [Cleaning page](01-cleaning.qmd) of this project. 
+
+Website of data for each variable: 
+
+- Climate change index: https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos 
+- Water insecurity: https://planestrategico.conl.mx/indicadores/detalle/ods/934/datos 
+- Groundwater: https://planestrategico.conl.mx/indicadores/detalle/ods/122/datos 
+- Reforestation: https://planestrategico.conl.mx/indicadores/detalle/ods/135/datos 
+
+Here are some data takeaways from this analysis: 
+
+The overall climate change index scores have decreased in recent years, signaling the poor treatment of natural resources in the country. The entity of Mexico City is consistently scored the highest since 2011, while the state of Quintana Roo stays closer to the bottom of the ranking with a low score of 13.143 in 2022. Meanwhile, the states of Hidalgo and Oaxaca improved significantly during the pandemic years. 
+
+The decrease in score began some time before the pandemic, around 2018. Interestingly enough, President Andres Manuel Lopez Obrador came into office in Dec. 2018. More exploration and reporting would be needed to explain if there is a relationship between the lower scores and the current presidential administration. 
+
+![](figures/climate_joint_chart.png) 
+
+For this second data analysis graph, the tiles in the chart represent the ranking position of the state of Nuevo León for the four different categories. Even though Nuevo León placed thirty third in 2022 for water insecurity (including the ranking for the whole nation plus 32 federal entities), which is the lowest ranking, the state ranked fourth in the same year for climate change index, or how well the state uses its natural resources. The lowest score in water insecurity is attached to Nuevo León because 42.014% or almost half of the population experiences a lack of access to clean water. Extra reporting and investigation would be needed to asses these contrasting results.  
+
+For the category of reforestation, Nuevo León has significantly improved when compared to other states. In 1993, Nuevo León occupied 16th place, but moved up to fourth in 2022. 
+
+More research would be required to learn about how state actions and resources led to these results. 
+
+![](figures/nuevo_leon_ranking.png) 
+
+Water insecurity level data of the state of Nuevo León and other data breakdowns and analysis charts are available in the [Analysis](02-analysis.qmd) page of this project. 
+
+Project by Maria Probert Hermosillo 
+
+## Español 
+
+El estado mexicano de Nuevo León tiene de los mejores rankings de buen uso de recursos naturales y de esfuerzos reforestatales. Aún asi, casi la mitad de la población del estado sufre de inseguridad de agua en el 2022, y durante la pandemia el deficit de agua potable creció de manera substentable desde el año pasado. 
+
+Estas observaciones surgieron de un analysis usando datos del Consejo Nuevo León, que analiza datos de las diferentes entidades federales y formulan guías para los gobiernos mexicanos para que puedan luchar contra diferentes temas sociales. Más infromación sobre Consejo Nuevo Leon se puede ver aquí: https://conl.mx/quienes_somos.
+
+Este proyecto busca comparar y analizar a los diferentes estados mexicanos y cómo califican en cuatro categorías: climate change index, water insecurity, groundwater and reforestation. 
+
+Más información y detalles de cada variable se puede encontrar en la página [Cleaning page](01-cleaning.qmd) de este proyecto. 
+
+Las páginas en línea con ifnormación de cada variable: 
+
+- Índice de cambio climático: https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos 
+- Inseguridad de agua: https://planestrategico.conl.mx/indicadores/detalle/ods/934/datos 
+- Agua subterránea: https://planestrategico.conl.mx/indicadores/detalle/ods/122/datos 
+- Reforestación: https://planestrategico.conl.mx/indicadores/detalle/ods/135/datos 
+
+Aquí hay unos datos sobre el analysis: 
+
+El índice del cambio climático a nivel nacional a bajado en los últimos años, señalando un maltrato de los recursos naturales en el pais. La entidad de la Ciudad de México califica en los primeros lugares de manera constante desde el 2011, mientras tanto, estaods como Quintana Roo califican más cerca al final del ranking con una calificación bajade 13.143. Mientras tanto, estados como Hidalgo y Oaxaca han mejorado den los rankings desde los años pandémicos. 
+
+
+Las calificaciones bajaron antes de la pandemia, alrededor del 2018. Un dato interesante es que el Presdiente Andres Manuel Lopez Obrador empezó su mandato en diciembre del 2018. Más exploración y reportaje se requiere para explicar si hay una relación entre las calificaciones bajas, y la administración del presidente actual. 
+
+![](figures/climate_joint_chart.png) 
+
+En esta segunda gráfica, cada cuadro representa la posición del estado de Nuevo León en las cuatro categorías. Aunque Nuevo León quedo en el lugar 33 en el 2022 por inseguridad de agua (esto incluye el ranking de todo el pais más 32 entidades federales), que es la peor posición del ranking, el estado también califico en cuarto lugar en el mismo año por el índice de cambio climático. Esa categoría también es para calificar que tan bien usan los recursos naturales. La calificación más baja en inseguridad de agua es de Nuevo León porque casi la mitad o el 42.014% de la población no tiene agua. Más reportaje he investigación se necesita para entender estos resultados.  
+
+Para la categoría de reforestación, Nuevo León ha mejorado mucho comparado con otros estados. En 1993, Nuevo León ocupó el 16avo lugar, pero ahora tiene el cuarto lugar en 2022.  
+
+Más investigación se necesita para aprender sobre las acciones de cada estado y los recursos que se usaron para obtener estos resultados. 
+
+
+![](figures/nuevo_leon_ranking.png)
+
+
+
+
+
+::: 
+
+

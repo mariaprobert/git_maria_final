@@ -1,0 +1,4 @@
+"0","# url <- ""https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos?page"""
+"0","url <- ""https://planestrategico.conl.mx/indicadores/detalle/ods/242/datos?page=2"""
+"0",""
+"0","html <- read_html(url)"
